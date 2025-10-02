@@ -2,7 +2,9 @@ package com.thejoeun.TheMall.controller;
 
 
 import com.thejoeun.TheMall.model.Goods;
+import com.thejoeun.TheMall.model.Users;
 import com.thejoeun.TheMall.service.GoodsService;
+import com.thejoeun.TheMall.service.UsersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,9 @@ public class 페이지이동이외모든작업Controller {
     // 서비스에 관련된 주소 작성
     @Autowired
     private GoodsService goodsService;
+
+    @Autowired
+    private UsersService usersService;
     // 서비스에 관련된 주소 작성
 
     /*
@@ -42,5 +47,10 @@ public class 페이지이동이외모든작업Controller {
     @GetMapping("/api/goods")
     public List<Goods> getAllGoods(){
         return goodsService.getAllGoods();
+    }
+
+    @GetMapping("/api/users")
+    public List<Users> getAllUsers(){
+        return usersService.getAllUsers();
     }
 }

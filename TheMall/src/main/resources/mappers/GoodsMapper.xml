@@ -16,6 +16,7 @@
     </resultMap>
 
 
+
     <select id="getAllGoods" resultMap="goodsResultMap">
         SELECT id, name, price, stock
         FROM goods
@@ -32,10 +33,5 @@
         INSERT INTO goods (name, price, stock)
         values (#{name}, #{price}, #{stock})
     </insert>
-
-    <select id="selectGoods" parameterType="com.thejoeun.TheMall.model.Goods">
-        INSERT INTO goods (name, price, stock)
-        values (#{name}, #{price}, #{stock})
-    </select>
 
 </mapper>
