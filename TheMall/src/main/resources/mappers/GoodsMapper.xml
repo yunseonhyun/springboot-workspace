@@ -6,7 +6,6 @@
 
 <mapper namespace="com.thejoeun.TheMall.mapper.GoodsMapper">
 
-    <!-- ResultMap 정의 -->
 
     <resultMap id="goodsResultMap" type="com.thejoeun.TheMall.model.Goods">
         <id property="id" column="id"/>
@@ -16,7 +15,6 @@
 
     </resultMap>
 
-    <!-- 모든 상품 조회 -->
 
     <select id="getAllGoods" resultMap="goodsResultMap">
         SELECT id, name, price, stock
@@ -24,14 +22,20 @@
         ORDER BY id DESC
     </select>
 
-    <!-- ID로 상품 조회 -->
-
     <select id="getGoodsById" parameterType="int" resultMap="goodsResultMap">
         SELECT id, name, price, stock
         FROM goods
         WHERE id = #{id}
     </select>
 
+    <insert id="insertGoods" parameterType="com.thejoeun.TheMall.model.Goods">
+        INSERT INTO goods (name, price, stock)
+        values (#{name}, #{price}, #{stock})
+    </insert>
 
+    <select id="selectGoods" parameterType="com.thejoeun.TheMall.model.Goods">
+        INSERT INTO goods (name, price, stock)
+        values (#{name}, #{price}, #{stock})
+    </select>
 
 </mapper>

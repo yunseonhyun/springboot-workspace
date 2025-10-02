@@ -24,8 +24,7 @@ resource/mappers/ 폴더 아래에
 @Mapper // @Repository랑 동일한 위치
 public interface GoodsMapper {
 
-    // 모든 상품 조회
-    // id="getAllGoods"에서 작성한 SQL을 기반으로
-    // 모든 데이터를 List 목록 형태로 가져올 것
     List<Goods> getAllGoods();
+    void insertGoods(Goods goods);
 }
+
