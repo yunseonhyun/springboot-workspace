@@ -108,9 +108,30 @@ public class 페이지이동이외모든작업Controller {
         goodsService.insertGoods(goods);
     }
 
+
+    /**
+     * /api/user -> get일 경우 모든 유저를 조회하는 공간으로 유저 조회 진행 시작
+     * 단순히 js -> html로 유저 데이터를 sql에서 전달하는 것이기 때문에
+     * 매개변수와 파라미터는 빈값 형태
+     * @return myBatis에 작성된 sql -> mapper에서 조회 후, service로 전달해온 데이터를
+     *  js -> html로 반환하여 클라이언트가 모든 유저 목록을 조회할 수 있도록 설정
+     */
     @GetMapping("/api/users")
     public List<User> getAll1(){
         return userService.getAll();
+    }
+
+
+    /**
+     * 유저 정보를 등록하는 API
+     * /api/user -> post일 경우 유저를 등록하는 공간으로 유저 등록 진행 시작
+     *
+     * @param user = html -> js로 가져온 유저 정보 데이터를 모두 json 형태 설정
+     * @RequestBody를 이용해서 js 형태 -> json 형태 설정
+     */
+    @PostMapping("/api/users")
+    public void insertUser(@RequestBody User user){
+        userService.insertUser(user);
     }
 
 

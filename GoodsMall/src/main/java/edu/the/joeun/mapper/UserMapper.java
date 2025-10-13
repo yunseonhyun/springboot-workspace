@@ -13,7 +13,7 @@ public interface UserMapper {
 
     // 단순 저장 확인용 void(= 반환데이터 없음) 선택
 
-    void insertUser();
+    void insertUser(User user);
 
     /*
     insert의 경우 void와 int 둘 다 가능
