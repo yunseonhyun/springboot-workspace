@@ -34,17 +34,27 @@ public class 페이지이동Controller {
      *
      * @return templates/goodsList.html 파일의 이름(확장자 제외)
      */
-    @GetMapping("/goodList")
+    @GetMapping("/goodsList")
     public String getGoodsList(){
-        return "goodList";
+        return "goodsList";
     }
 
     /**
-     * URL("/goodsAdd") 접속했을 때 goodsAss.html 페이지를 반환
+     * URL("/goodsAdd") 접속했을 때 goodsAdd.html 페이지를 반환
      * @return templates/goodsAdd.html 파일의 이름(확장자 제외)
      */
     @GetMapping("/goodsAdd")
     public String getGoodsAdd(){
         return "goodsAdd";
+    }
+
+    @GetMapping("/user/list")
+    public String userList(){
+        return "사용자목록";
+    }
+
+    @GetMapping("/user/add")
+    public String userAdd(){
+        return "user_add";
     }
 }
