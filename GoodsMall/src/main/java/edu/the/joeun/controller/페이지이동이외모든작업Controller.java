@@ -138,11 +138,12 @@ public class 페이지이동이외모든작업Controller {
         userService.insertUser(user);
     }
 
-
+    /*
     @PostMapping("/api/member/add")
     public void insertMember(@RequestBody Member member){
         memberService.insertMember(member);
     }
+    */
 
 
 }

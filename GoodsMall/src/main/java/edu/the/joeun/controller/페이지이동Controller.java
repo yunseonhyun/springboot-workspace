@@ -58,8 +58,5 @@ public class 페이지이동Controller {
         return "user_add";
     }
 
-    @GetMapping("/member/add")
-    public String memberAdd(){
-        return "memberAdd";
-    }
+
 }
