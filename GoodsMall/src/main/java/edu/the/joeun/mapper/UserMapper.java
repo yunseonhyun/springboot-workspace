@@ -31,4 +31,14 @@ public interface UserMapper {
     단순 조회, 수정, 삭제의 경우 void나 User와 같은 자료형을 활용하기도 함
     개발자가 원하는 결과 상황에 따라 자료형은 void, int User와 같은 자료형 사용
      */
+
+    /**
+     * 이메일로 사용자 조회 (로그인용)
+     * 특정 유저 1명만 조회하는 것이기 때문에
+     * User 자료형 사용
+     *
+     * @param email html -> js -> controller -> service에서 가져온 email 값을 매개변수로 받아옴
+     * @return email을 활용한 유저 정보를 service에 전달 email 존재 유무에 따라 전달 여부 설정
+     */
+    User getUserByEmail(String email);
 }

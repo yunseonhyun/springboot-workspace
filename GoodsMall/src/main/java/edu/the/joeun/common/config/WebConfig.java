@@ -20,7 +20,7 @@ public class WebConfig implements WebMvcConfigurer {
         // 일반 유저가 로그인했을 때 접속할 수 있는 api 리스트
         registry.addInterceptor(loginInterceptor)
                 .addPathPatterns( // 유저가 특별히 더 들어갈 수 있는 api들
-                        "/goofList", // 상품목록
+                        "/goodList", // 상품목록
                        "/goodsAdd" // 상품 등록
                 )
                 .excludePathPatterns( // 누구든지 들어갈 수 있는 api 주소들

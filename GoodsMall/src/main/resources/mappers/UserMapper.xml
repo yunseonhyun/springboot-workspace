@@ -34,4 +34,10 @@
         <!-- id, creat_at, update_at은 sql 자체에서 데이터 알아서 삽입하므로 사용자가 작성한 데이터를 기입하지 않는다 -->
     </insert>
 
+    <!-- 이메일로 사용자 조회 (로그인용도) -->
+    <select id="getUserByEmail" parameterType="String" resultMap="userMap">
+        SELECT *
+        FROM USER
+        WHERE email = #{email}
+    </select>
 </mapper>
