@@ -25,7 +25,7 @@ import jakarta.servlet.http.HttpSession;
  */
 public class SessionUtil {
 
-    // 세샨 키 상수 형태로 저장
+    // 세션 키 상수 형태로 저장
     private static final String LOGIN_USER = "loginUser";
 
     /**

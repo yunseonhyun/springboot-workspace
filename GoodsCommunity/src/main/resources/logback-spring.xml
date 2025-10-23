@@ -4,7 +4,6 @@
      -->
 <configuration scan="true" scanPeriod="60 seconds">
     <!-- 1분(60초) 마다 설정 변경 사항을 파악한 후 파일 갱신 -->
-
     <!-- config.properties에 아래 내용 추가
         log.config.path     (로그 파일 저장 경로)
         log.config.fileName (로그 파일 이름)
@@ -18,7 +17,6 @@
     <property name="fileName"		value="${log.config.fileName}" />  <!-- config.properties에서 얻어온 값-->
     <property name="maxHistory"		value="30" />
     <property name="maxFileSize"	value="10MB" />
-
     <!--
     ================================== Spring Boot 로그 기본 설정 ==================================
     conversionRule = 로그를 출력할 때 커스텀 규칙 정의
@@ -73,7 +71,7 @@
     encoder : 파일에 로그를 저장할 때 사용하는 패턴(형식) 지정
             FILE_LOG_PATTERN 변수 사용
             위에서 지정한
-            <property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } --- [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
+            <property name="FILE_LOG_PATTERN" value="${FILE_LOG_PATTERN:-%d{${LOG_DATEFORMAT_PATTERN:-yyyy-MM-dd HH:mm:ss.SSS}} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } - [%t] %-40.40logger{39} : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
             이 패턴대로 지정
 
 
@@ -95,9 +93,7 @@
             <pattern>${FILE_LOG_PATTERN}</pattern>
             <charset>${FILE_LOG_CHARSET}</charset>
         </encoder>
-
     </appender>
-
 
 <!--
 root 태그는 모든 로그의 최상위 설정이자, 위에서 만든 Appender 들을 실제로 적용하는 부분
@@ -115,6 +111,5 @@ root 태그는 모든 로그의 최상위 설정이자, 위에서 만든 Appende
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="ROLLING" />
     </root>
-
 
 </configuration>
