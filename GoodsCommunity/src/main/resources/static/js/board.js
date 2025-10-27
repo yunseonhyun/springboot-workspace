@@ -32,8 +32,8 @@ async  function fetchBoardData(){
                 <td>${b.id}</td>
                 <td class="title-cell">${b.title}</td>
                 <td>${b.writer}</td>
-                <td></td>
-                <td></td>
+                <td>${b.viewCount}</td>
+                <td>${b.createdAt}</td>
                 <td onclick="openModal(${b.id})">미리보기</td>
                 <td onclick="gotoDetail(${b.id})">상세보기</td>
                 
@@ -70,8 +70,18 @@ async  function fetchBoardDetail(){
 
     const b = await  detailFunction(boardId);
 
+    console.log("DB 데이터 조회 : ", b);
+
     const title = document.querySelector(".board-title");
+    const writer = document.querySelector(".board-writer");
+    const date = document.querySelector(".board-date");
+    const views = document.querySelector(".board-views");
+    const content = document.querySelector(".board-content");
     title.textContent = b.title;
+    writer.textContent = b.writer;
+    date.textContent = b.createdAt;
+    views.textContent = b.viewCount;
+    content.textContent = b.content;
 }
 
 
@@ -117,6 +127,9 @@ window.addEventListener("DOMContentLoaded", () => {
         fetchBoardDetail();
     }
 });
+
+const listBtn = document.querySelector((".btn-list"));
+listBtn.addEventListener("click", gotoList);
 
 
 // 상세페이지 이동 버튼 기능

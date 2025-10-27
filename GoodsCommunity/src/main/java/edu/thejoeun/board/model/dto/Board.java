@@ -20,7 +20,7 @@ public class Board {
     private String title;
     private String content;
     private String writer;
-    private int view_count;
+    private int viewCount;
     private String createdAt; // DB 명칭 created_at
     private String updatedAt; // DB 명칭 updated_at
 
