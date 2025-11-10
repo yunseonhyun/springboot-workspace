@@ -2,6 +2,7 @@ package edu.thejoeun.member.controller;
 
 import edu.thejoeun.common.util.SessionUtil;
 import edu.thejoeun.member.model.dto.Member;
+import edu.thejoeun.member.model.service.MemberService;
 import edu.thejoeun.member.model.service.MemberServiceImpl;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,18 +18,26 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 @Slf4j // log를 출력하게 해주는 어노테이션
 public class MemberController {
-
+/*
     @Autowired
     MemberServiceImpl memberService;
+
+ */
+/*
+Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'memberController' method
+edu.thejoeun.member.controller.MemberController#pageMain()
+to {GET [/]}: There is already 'mainController' bean method
+edu.thejoeun.main.controller.MainController#pageMain() mapped
 
     @GetMapping("/")
     public String pageMain(){
        // return "main";
         return "index";
     }
-
+*/
     //쿠키 설정할 때 아이디 저장 안되면 가장먼저하는 작업
     // @CookieView 와 Model 은 필요 없음!!!
+    /*
     @GetMapping("/login")
     public String pageLogin(
     ){
@@ -77,7 +86,7 @@ public class MemberController {
 
          * if (saveId.equals("on")){
          * if ("on".equals(saveId)){
-         */
+         * /
         if ("on".equals(saveId)){
             userIdCookie.setMaxAge(60 * 60 * 24 * 30); // 쿠키 30일단위 추가
         } else {
@@ -86,10 +95,9 @@ public class MemberController {
         res.addCookie(userIdCookie); // 응답 객체에 쿠키 추가 -> 클라이언트 전달
 
         Member des = (Member) session.getAttribute("destination");
-        log.info("detination : {} ", des);
+        log.info("destination : {}", des);
         Member logUser = (Member) session.getAttribute("loginUser");
-        log.info("logUser : {} ", logUser);
-
+        log.info("loginUser : {}", logUser);
         return "redirect:/";
     }
 
@@ -102,7 +110,9 @@ public class MemberController {
         userIdCookie.setPath("/");
         res.addCookie(userIdCookie);
 
-         */
+         * /
         return "redirect:/"; //로그아웃 선택시 모든 쿠키 데이터 지우고 메인으로 돌려보내기
     }
+
+     */
 }
