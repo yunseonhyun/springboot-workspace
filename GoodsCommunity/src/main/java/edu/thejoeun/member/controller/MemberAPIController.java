@@ -26,13 +26,9 @@ public class MemberAPIController {
     @PostMapping("/login")
     public Map<String, Object> login(
             @RequestBody Map<String, String> loginData, HttpSession session){
-
-
         String memberEmail = loginData.get("memberEmail");
         String memberPassword = loginData.get("memberPassword");
-
         Map<String, Object> res = memberService.loginProcess(memberEmail, memberPassword,session);
-
         return res;
     }
 
@@ -50,5 +46,12 @@ public class MemberAPIController {
     @GetMapping("/check")
     public Map<String, Object> checkLoginStatus(HttpSession session){
         return memberService.checkLoginStatus(session);
+    }
+
+    // PostMapping 만들기
+    // mapper.xml -> mapper.java -> service.java -> serviceImpl.java apiController.java
+    @PostMapping("/signup")
+    public void saveMember(@RequestBody Member member){
+        memberService.saveMember(member);
     }
 }

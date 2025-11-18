@@ -16,4 +16,9 @@
         WHERE member_email = #{memberEmail}
     </select>
 
+<!-- savaMember -->
+    <insert id="saveMember" parameterType="Member">
+        INSERT INTO Member(member_name, member_email, member_password)
+        VALUES (#{memberName}, #{memberEmail}, #{memberPassword})
+    </insert>
 </mapper>

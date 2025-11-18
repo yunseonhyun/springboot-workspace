@@ -95,4 +95,10 @@ public class MemberServiceImpl  implements MemberService {
         }
         return  res;
     }
+
+
+    public void saveMember(Member member){
+        // 비밀번호 암호화 해서 저장
+        memberMapper.saveMember(member);
+    }
 }
