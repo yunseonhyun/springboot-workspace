@@ -98,7 +98,13 @@ public class MemberServiceImpl  implements MemberService {
 
 
     public void saveMember(Member member){
+        String originPw =  member.getMemberPassword(); // 기존 클라이언트 비밀번호 가져오기
+        String encodedPw = bCryptPasswordEncoder.encode(originPw); // 비밀번호 암호화
+        member.setMemberPassword(encodedPw); // 암호화처리된 비밀번호 교체
+
+        // 교체된 비밀번호 포함해서 저장
         // 비밀번호 암호화 해서 저장
+
         memberMapper.saveMember(member);
     }
 }
