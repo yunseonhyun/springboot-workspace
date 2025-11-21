@@ -21,14 +21,14 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 // REST API CORS 설정
                 registry.addMapping("/api/**")
-                        .allowedOrigins("http://localhost:57007","http://localhost:3000")
+                        .allowedOrigins("http://localhost:3000")
                         .allowCredentials(true)
                         .allowedMethods("GET","POST","PUT","DELETE","PATCH","OPTIONS")
                         .allowedHeaders("*");
 
                 // WebSocket CORS 설정 추가
                 registry.addMapping("/ws/**")
-                        .allowedOrigins("http://localhost:57007","http://localhost:3000")
+                        .allowedOrigins("http://localhost:3000")
                         .allowCredentials(true)
                         .allowedMethods("GET","POST","PUT","DELETE","PATCH","OPTIONS")
                         .allowedHeaders("*");

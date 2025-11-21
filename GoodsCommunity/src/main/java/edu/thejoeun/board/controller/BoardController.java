@@ -53,12 +53,14 @@ public class BoardController {
         // WebSocket을 통해 실시간 알림 전송
         Map<String, Object> notification = new HashMap<>();
         notification.put("msg", "새로운 게시글이 작성되었습니다");
+        notification.put("boardId", board.getId());
+        log.info("boardId,{}", board.getId());
         notification.put("title", board.getTitle());
         notification.put("writer", board.getWriter());
         notification.put("timestamp", System.currentTimeMillis());
 
         // /topic/notification을 구독한 모든 클라이언트에게 전송
-        messagingTemplate.convertAndSend("/topic/notification", notification);
+        messagingTemplate.convertAndSend("/topic/notifications", notification);
         log.info("새 게시글 작성 및 WebSocket 알림 전송 완료 : {}", board.getTitle()); // 개발자 회사 로그용
     }
 
