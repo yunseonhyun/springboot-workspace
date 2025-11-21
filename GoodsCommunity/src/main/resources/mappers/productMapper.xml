@@ -9,7 +9,7 @@
     <select id="getAllProducts" resultType="Product">
         SELECT *
         FROM product
-        ORDER BY create_at DESC
+        ORDER BY created_at DESC
     </select>
 
     <!-- 상픔 상세 조회 id로 상품의 세부내용 확인 -->
@@ -57,8 +57,8 @@
 
 <!-- 상품 등록 -->
     <insert id="insertProduct" parameterType="Product" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO product(product_name, product_code, price, stock_quantity, description, manufacturer, image_url, is_active)
-        VALUES(#{productName}, #{productCode}, #{price}, #{stockQuantity}, #{description}, #{manufacturer}, #{imageUrl}, #{isActive})
+        INSERT INTO product(product_name, product_code, price, stock_quantity, description, manufacturer, image_url)
+        VALUES(#{productName}, #{productCode}, #{price}, #{stockQuantity}, #{description}, #{manufacturer}, #{imageUrl})
     </insert>
 
 <!-- 상품 수정 -->
