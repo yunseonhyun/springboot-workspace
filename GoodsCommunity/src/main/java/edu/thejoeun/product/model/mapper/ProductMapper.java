@@ -21,7 +21,7 @@ public interface ProductMapper {
     List<Product> getProductsByCategory(String category);
 
     // 상품명으로 검색
-    List<Product> getProducts(String keyword);
+    List<Product> searchProducts(String keyword);
 
     /*
     수정 삭제도 동일
