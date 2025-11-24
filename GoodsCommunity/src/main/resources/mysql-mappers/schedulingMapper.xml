@@ -5,22 +5,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.thejoeun.common.scheduling.Mapper.SchedulingMapper">
-<!--
- Oracle에서는 LIMIT 대신 FETCH FIRST 또는 ROWNUM 사용 -> ROWNUM 코드가 번잡
- Noew() 대신 SYSDATE또는 CURRENT_TIMESTAMO
- Now() 대신 SYSDATE 또는 CURRENT_TIMESTAMP 사용
- Limit 10 ->
-
-
-  useGeneratedKeys="true" keyProperty="id" keyColumn="id"
-  문제가 되지 않으나 써주는 것이 좋다.
- -->
+    <!-- 조회수 기준 10개 게시글을 인기글로 등록 -->
     <insert id="insertPopularBoards" parameterType="board">
         INSERT INTO  popular_board(board_id, ranking, updated_at)
-        SELECT id, ROW_NUMBER() PVER (ORDER BY view_count DESC) as ranking, CURRENT_TIMESTAMP
+        SELECT
+            id, ROW_NUMBER() OVER(ORDER BY view_count DESC) as ranking, NOW()
         FROM board
-        ORDER BY view_count DESC
-        WHERE FETCH FIRST 10 Rows ONLY
+        ORDER BY  view_count DESC
+            LIMIT 10
     </insert>
 
     <!-- 인기글 목록 조회 -->
