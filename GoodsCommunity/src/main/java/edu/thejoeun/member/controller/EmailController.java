@@ -20,7 +20,7 @@ public class EmailController {
     private final EmailService emailService; // 다른사람들이 조작하지 못하도록 final 상수 설정
     @PostMapping("/signup") // api : email/signup
     public int signup(@RequestBody String email){
-        String authKey = emailService.sendEmail("signup", email);
+        String authKey = emailService.sendMail("signup", email);
         if(authKey != null){ // 인증번호가 반환돼서 돌아옴
             // 이메일 보내기 성공
             return 1;
