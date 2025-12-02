@@ -19,7 +19,8 @@ public class EmailController {
     // @Autowired -> @RequiredArgsConstructor 작성했기 때문에 생략 가능
     private final EmailService emailService; // 다른사람들이 조작하지 못하도록 final 상수 설정
     @PostMapping("/signup") // api : email/signup
-    public int signup(@RequestBody String email){
+    public int signup(@RequestBody Map<String, String> map){
+        String email = map.get("email");
         String authKey = emailService.sendMail("signup", email);
         if(authKey != null){ // 인증번호가 반환돼서 돌아옴
             // 이메일 보내기 성공

@@ -2,6 +2,7 @@ package edu.thejoeun.product.model.service;
 
 
 import edu.thejoeun.product.model.dto.Product;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,7 +30,7 @@ public interface ProductService {
 
      */
     // 상품 등록
-    void insertProduct(Product product);
+    void insertProduct(Product product, MultipartFile imageFile);
 
     // 상품 수정
     void updateProduct(Product product);

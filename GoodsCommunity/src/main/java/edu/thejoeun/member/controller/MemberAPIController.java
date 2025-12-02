@@ -55,13 +55,23 @@ public class MemberAPIController {
     // mapper.xml -> mapper.java -> service.java -> serviceImpl.java apiController.java
     // 완성
 
+    /**
+     * @RequestPart : multipart / form-data 파일 _ JSON 파트 데이터 받을 때
+     * @RequestParam : URL 쿼리 파라미터 / HTML Form 파라미터
+     * @RequestBody : 요청 전체를 객체로 받을 떄
+     *
+     * required = false는 @PathVariable @RequestPart @Requestparam @RequestBody
+     * 모두에서 쓸 수 있는 속성으로 각 데이터가 필수로 존재하지 않아도 될 떄 사용
+     * 기본값은 true
+     * @param member
+     */
     @PostMapping("/signup")
-    public void saveSignup(@RequestBody Member member){
+    public void saveSignup(@RequestPart Member member, @RequestPart(required=false) MultipartFile profileImage){
         log.info("===회원가입 요청===");
         log.info("요청 데이터 - 이름 : {}, 이메일 : {}",member.getMemberName(),member.getMemberEmail());
 
         try {
-            memberService.saveMember(member);
+            memberService.saveMember(member, profileImage);
             log.info("회원가입 성공 - 이메일 : {}",member.getMemberEmail());
         } catch (Exception e){
             log.error("회원가입 실패 - 이메일 : {}, 에러 : {}",member.getMemberEmail(),e.getMessage());
@@ -91,7 +101,7 @@ public class MemberAPIController {
             m.setMemberAddress(updateData.get("memberAddress").toString());
 
             // 새 비밀번호가 있는 경우
-            String newPassword = (String) updateData.get("memberPassword");
+            String newPassword = (String) updateData.get("newPassword");
             if(newPassword != null && !newPassword.isEmpty()) {
                 m.setMemberPassword(newPassword);
             }
