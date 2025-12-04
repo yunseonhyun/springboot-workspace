@@ -6,34 +6,33 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// Entity = JPA 데이터베이스 자체를 자바에서부터 생성해서 DB 컬럼 관리
-// Builder
-@Data                   // Getter Setter ToString 과 같은 기능 어노테이션 모아놓은 어노테이션
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Board {
 
-    // JPA로 상태관리할 때 기본키라는 설정
-    // @Id
-    // GeneratedValue
     private int id;
     private String title;
     private String content;
     private String writer;
     private int viewCount;
-    private String createdAt; // DB 명칭 created_at
-    private String updatedAt; // DB 명칭 updated_at
-
-    // 인기글 전용 필드(일반 게시글 조회 시에는 null)
-
-    // private int ranking; // 인기글 순위
-    private Integer ranking; // 인기글 순위
-    private String popularUpdateAt; // 인기글 업데이트 시간
+    private String createdAt;
+    private String updatedAt;
+    private Integer ranking;
+    private String popularUpdateAt;
     private String boardMainImage;
-    // DB에 저장할 때는 리스트 -> 문자열 형태로 저장 ,로 구분지어서 하나의 문자열로 저장할 예정
+    // DB에 저장할 때는 리스트 -> 문자열 형태로 저장 , 로 구분지어서 하나의 문자열로 저장할 예정
     private String boardDetailImage;
     /**
      * 5. 게시물 작성시 폴더에 이미지 저장되고, db에 경로 + 파일명 추가되는지 확인
      */
-
 }
+
+
+
+
+
+
+
+
+

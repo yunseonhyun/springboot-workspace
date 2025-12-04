@@ -205,7 +205,7 @@ public class FileUploadService {
 
         String extention = get확장자메서드(file);
 
-        String client_upload_fileName =  client_upload_file;
+        String client_upload_fileName =  imageType + client_upload_file;
 
         Path save_to_path = Paths.get(boardFolder,client_upload_fileName);
 

@@ -7,7 +7,6 @@ import edu.thejoeun.board.model.service.BoardService;
 import edu.thejoeun.common.scheduling.Service.SchedulingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.logging.log4j.message.SimpleMessage;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -50,35 +49,28 @@ public class BoardController {
 
 
     /**
-     * 게시물 작성 (이미지 포함될 수도 있고, 안될수 있음)
-     * @param board 게시물 정보
-     * @param mainImage 메인 이미지 (선택사항 - 클라이언트가 null로 전달할 때는 이미지 없음)
-     * @param detailImage 상세 이미지 리스트 (최대 5개, 선택사항 - 클라이언트가 null로 전달할 때는 이미지 없음)
+     * 게시물 작성 (이미지 포함될 수도 있고, 안될 수 있음)
+     * @param board       게시물 정보
+     * @param mainImage   메인 이미지 (선택사항 - 클라이언트가 null로 전달할 때는 이미지 없음)
+     * @param detailImage 상세 이미지 리스트 (최대 5개, 선택사항 - 클라이언트가 null 로 전달할 때는 이미지 없음)
+     * @throws IOException
      */
     @PostMapping  // api endpoint = /api/board 맨 위에 작성한 requestMapping 해당
     public void createBoard(@RequestPart Board board,
                             @RequestPart(required = false) MultipartFile mainImage,
-                            @RequestPart(required = false) List<MultipartFile> detailImage) throws IOException {
-        log.info("게시물 작성 요청 - 제목 :{}, 작성자 : {}", board.getTitle(), board.getWriter());
+                            @RequestPart(required = false) List<MultipartFile> detailImage
+    ) throws IOException {
 
-        if(detailImage != null) {
-            log.info("살세 이미지 개수 : {}", detailImage.size());
+        log.info("게시물 작성 요청 - 제목: {}, 작성자:{}", board.getTitle(), board.getWriter());
+
+        if(detailImage != null){
+            log.info("상세 이미지 개수: {}", detailImage.size());
         }
-        boardService.createBoard(board, mainImage, detailImage); // 게시글 저장
-        log.info("게시물 작성 완료 - ID : {}", board.getId());
-
-
+        boardService.createBoard(board, mainImage, detailImage); //게시글 저장
+        log.info("게시물 작성 완료 - ID: {}", board.getId());
 
     }
 
-    /*
-    인기글을 23시 59분까지 기다리지 않고, 개발자가
-    인기글업데이트가 무사히 잘 되는지 확인하는 방법 1탄
-        @PostMapping("/popular/update")
-        public int 인기글수동업데이트기능(){
-            log.info("현재 23시 59분이 아니므로 인기글 수동으로 업데이트해서 확인");
-            int result = schedulingService.updatePopularBoards();
-            return result;
-        }
-    */
 }
+
+

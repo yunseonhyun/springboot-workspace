@@ -8,8 +8,8 @@ import java.util.List;
 @Mapper
 public interface BoardMapper {
 
-        // mapper.xml 에 작성한
-        // id와 메서드명칭은 일치
+    // mapper.xml 에 작성한
+    // id 와 메서드명칭은 일치
     List<Board> getAllBoard();
 
     /**
@@ -40,8 +40,8 @@ public interface BoardMapper {
 
     /**
      * 게시물의 이미지 데이터 업데이트
-     * @param board id와 mainImage, detailImage 활용할 것
-     *              int id, String board_main_image, String board_detail_image와 같은 형식으로도 매개변수 작성 가능
+     * @param board id 와 mainImage, detailImage 활용할 것
+     *              int id, String board_main_image, String board_detail_image 와 같은 형식으로도 매개변수 작성 가능
      */
     void updateBoardImages(Board board);
 }
