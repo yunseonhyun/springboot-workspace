@@ -29,5 +29,11 @@ public class Board {
     // private int ranking; // 인기글 순위
     private Integer ranking; // 인기글 순위
     private String popularUpdateAt; // 인기글 업데이트 시간
+    private String boardMainImage;
+    // DB에 저장할 때는 리스트 -> 문자열 형태로 저장 ,로 구분지어서 하나의 문자열로 저장할 예정
+    private String boardDetailImage;
+    /**
+     * 5. 게시물 작성시 폴더에 이미지 저장되고, db에 경로 + 파일명 추가되는지 확인
+     */
 
 }

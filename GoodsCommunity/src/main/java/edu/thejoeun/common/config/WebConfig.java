@@ -23,6 +23,9 @@ public class WebConfig implements WebMvcConfigurer {
     @Value("${file.product.upload.path}")
     private String productUploadPath;
 
+    @Value("${file.board.upload.path}")
+    private String boardUploadPath;
+
     @Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
@@ -53,7 +56,7 @@ public class WebConfig implements WebMvcConfigurer {
         // profile_images/** 로 요청이 오면 실제 파일 시스템 경로에서 이미지 가져오기
         // 폴더별로 registry 설정한다. registry 는 다수가 될 수 있다.
         registry.addResourceHandler("/profile_images/**")
-                .addResourceLocations("file:"+fileUploadPath + "/"); // 폴더명칭뒤에 바로 이미지명칭 붙어서 에러 발생
+                .addResourceLocations("file:"+fileUploadPath+"/"); // 폴더명칭뒤에 바로 이미지명칭 붙어서 에러 발생
 
         // 상품 이미지 : product_images/** 라는 변수이름으로 데이터 가져와서 활용하겠다는 요청이 들어오면
         // 실제 파일 시스템 경로에서 이미지를 가져와 사용
@@ -63,17 +66,20 @@ public class WebConfig implements WebMvcConfigurer {
         /**
          * 동작 방식
          * 클라이언트가 /product_images/제품번호/main.jpg 요청
-         * ->  실제 파일 : 바탕화면/product_images/제품번호/main.jpg 반환
+         * -> 실제 파일 : 바탕화면/product_images/제품번호/main.jpg 반환
          *
-         * 주의사항 :
-         * file: 뒤에 공백없이 바로 경로 연결
-         * 경로 끝에 / 꼭 붙이기 (안붙이면 경로 인식 오류)
-         * 프로필 / 상품 이미지 경로가 각각 독립적으로 설정되었는지 필히 확인
+         * 주의 사항 :
+         *  file: 뒤에 공백 없이 바로 경로 연결
+         *  경로 끝에 / 꼭 붙이기 (안붙이면 경로 인식 오류)
+         *  프로필/상품 이미지 경로가 각각 독립적으로 설정되었는지 필히 확인
          */
+
         registry.addResourceHandler("/product_images/**")
-                .addResourceLocations("file:"+fileUploadPath + "/");
+                .addResourceLocations("file:"+productUploadPath + "/"); // 폴더명칭뒤에 바로 이미지명칭 붙어서 에러 발생
 
 
+        registry.addResourceHandler("/board_images/**")
+                .addResourceLocations("file:"+boardUploadPath + "/"); // 폴더명칭뒤에 바로 이미지명칭 붙어서 에러 발생
 /*       // 게시물 이미지 폴더 수정
         registry.addResourceHandler("/profile_images/**")
                 .addResourceLocations("file:"+fileUploadPath + "/"); // 폴더명칭뒤에 바로 이미지명칭 붙어서 에러 발생
